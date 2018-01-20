@@ -1,39 +1,16 @@
-# Define the compiler and the linker. The linker must be defined since
-# the implicit rule for linking uses CC as the linker. g++ can be
-# changed to clang++.
-CXX = g++
-CC  = $(CXX)
-
-DEPFLAGS = -MT $@ -MMD -MP -MF $*.d
-
-# Define preprocessor, compiler, and linker flags. Uncomment the # lines
-# if you use clang++ and wish to use libc++ instead of GNU's libstdc++.
-# -g is for debugging.
-CPPFLAGS =  -std=c++11
-CXXFLAGS =  -O2 -Wall -Wextra -pedantic-errors -Wold-style-cast 
-CXXFLAGS += -std=c++11 
-CXXFLAGS += -g
-CXXFLAGS += $(DEPFLAGS)
-LDFLAGS =   -g 
-#CPPFLAGS += -stdlib=libc++
-#CXXFLAGS += -stdlib=libc++
-#LDFLAGS +=  -stdlib=libc++
-
-# Targets
-PROGS = ltest
-
-all: $(PROGS)
-
-# Targets rely on implicit rules for compiling and linking
+# The following rule means: "if ltest does not exist, or
+# is older than ltest.o or list.o,
+# then link ltest".
 ltest: ltest.o list.o
+	g++ -o ltest ltest.o list.o
 
-# Phony targets
-.PHONY: all clean
+# Rules to create the object files.
+ltest.o: ltest.cc list.h
+	g++ -c ltest.cc -std=c++11
+list.o: list.cc list.h
+	g++ -c list.cc -std=c++11
 
-# Standard clean
-clean:
-	rm -f *.o $(PROGS)
-
-# Include the *.d files
-SRC = $(wildcard *.cc)
--include $(SRC:.cc=.d)
+print_argv: print_argv.o
+	g++ -o print_argv print_argv.o
+print_argv.o: print_argv.cc
+	g++ -c print_argv.cc -std=c++11
