@@ -22,7 +22,7 @@ int main() {
 	cout << "4 exists:  " << list.exists(4) << endl;
 	cout << "10 exists: " << list.exists(10) << endl;
 	cout << "7 exists:  " << list.exists(7) << endl;
-	
+
 	list.remove(5, List::DeleteFlag::EQUAL);
 	cout << "After remove = 5: ";
 	list.print();
