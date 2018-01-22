@@ -28,7 +28,7 @@ bool List::exists(int d) const {
 }
 
 int List::size() const {
-	if(first =! NULL) {
+	if(first != NULL) {
 
         Node *temp = first;
         int size = 0;
@@ -84,4 +84,3 @@ void List::print() const {
 	}
 	delete temp;
 }
-
