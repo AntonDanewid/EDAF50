@@ -61,19 +61,59 @@ void List::insertFirst(int d) {
 
 void List::remove(int d, DeleteFlag df) {
 
-	if(first->value )
+    if(first == NULL) {
+        return;
+    }
+    if(first->next == NULL) {
+        if(df == DeleteFlag::LESS) {
+            if(first->value < d) {
+                delete first;
+                return;
+            }
+        } else if(df == DeleteFlag::EQUAL) {
+            if(first->value == d) {
+                delete first;
+                return;
+            }
+        } else if(df == DeleteFlag::GREATER) {
+            if(first -> value > d) {
+                delete first;
+                return;
+            }
+        }
+    }
 
-	while(temp != NULL) {
-		if(df == DeleteFlag::LESS) {
-			if(temp->value < d) {
+    Node * current = first;
+    Node *nextNode = first->next;
 
+	while(nextNode != NULL) {
+
+
+
+        if(df == DeleteFlag::LESS) {
+			if(nextNode->value < d) {
+                current -> next = nextNode->next;
+                delete nextNode;
+                return;
 			}
 		} else if(df == DeleteFlag::EQUAL) {
+            if (nextNode->value == d) {
+                current->next = nextNode->next;
+                delete nextNode;
+                return;
+            }
+        }
 
-		} else if(df ==DeleteFlag::GREATER) {
+		 else if(df ==DeleteFlag::GREATER) {
+            if(nextNode->value > d) {
 
+                current->next = nextNode->next;
+                delete nextNode;
+                return;
+            }
 		}
-        temp = temp->next;
+        current = nextNode;
+        nextNode = nextNode->next;
 	}
 
 }
