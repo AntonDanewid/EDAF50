@@ -19,10 +19,10 @@ List::~List() {
 bool List::exists(int d) const {
 	Node *temp = first;
 	while(temp!= NULL) {
-		if(temp-> value == d) {
-			delete temp;
+        if(temp-> value == d) {
             return true;
 		}
+        temp= temp->next;
 	}
 	return false;
 }
@@ -61,7 +61,8 @@ void List::insertFirst(int d) {
 
 void List::remove(int d, DeleteFlag df) {
 
-	Node *temp = first;
+	if(first->value )
+
 	while(temp != NULL) {
 		if(df == DeleteFlag::LESS) {
 			if(temp->value < d) {
@@ -72,6 +73,7 @@ void List::remove(int d, DeleteFlag df) {
 		} else if(df ==DeleteFlag::GREATER) {
 
 		}
+        temp = temp->next;
 	}
 
 }
@@ -82,5 +84,4 @@ void List::print() const {
 		std::cout << temp->value << ", ";
 		temp = temp->next;
 	}
-	delete temp;
 }
