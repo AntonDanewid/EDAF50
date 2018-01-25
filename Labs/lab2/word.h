@@ -16,6 +16,10 @@ public:
 	 in this word's trigram vector */
 	unsigned int get_matches(const std::vector<std::string>& t) const;
 private:
+	std::string word;
+	std::vector<std::string> trigrams;
+	std::vector<Word> words[25]; // words[i] = the words with i letters,
+// ignore words longer than 25 letters
 };
 
 #endif
