@@ -23,7 +23,7 @@ LDFLAGS =   -g
 
 
 # Targets
-PROGS =  reader testDict
+PROGS =  reader testDict spell
 
 all: $(PROGS)
 
@@ -34,7 +34,9 @@ test: test_coding
 
 reader: reader.o
 testDict: testDict.o dictionary.o
-dictionary: dictionary.o
+dictionary: dictionary.o word.o 
+word: word.o
+spell: spell.o dictionary.o 
 
 # Phony targets
 .PHONY: all test clean distclean

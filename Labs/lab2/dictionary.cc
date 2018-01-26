@@ -5,14 +5,13 @@
 #include <algorithm>
 #include "word.h"
 #include "dictionary.h"
-#include <bits/stdc++.h>
+#include <unordered_set>
 using namespace std;
 
 using std::string;
 using std::vector;
 
 Dictionary::Dictionary() {
-    unordered_set <string> stringSet;
 	string filename ="words.txt";
 	ifstream input(filename);
 	if (!input) { // "if the file couldn’t be opened"
@@ -34,11 +33,14 @@ Dictionary::Dictionary() {
 
 
 
-
 }
 
 bool Dictionary::contains(const string& word) const {
-	stringSet.
+    auto search = stringSet.find(word);
+    if(search != stringSet.end()) {
+        return true;
+    }
+    return false;
 }
 
 vector<string> Dictionary::get_suggestions(const string& word) const {
