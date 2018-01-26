@@ -93,4 +93,8 @@ add_executable(EDAF50
         Labs/lab1/list.h
         Labs/lab1/ltest.cc
         Labs/lab1/print_argv.cc
-        Labs/lab1/test_coding.cc Labs/lab1/hello.cpp Labs/lab1/coding.h Labs/lab1/coding.cpp Labs/lab1/encode.cpp Labs/lab1/decode.cpp Labs/lab2/reader.cpp)
+<<<<<<< Updated upstream
+        Labs/lab1/test_coding.cc Labs/lab1/hello.cpp Labs/lab1/coding.h Labs/lab1/coding.cpp Labs/lab1/encode.cpp Labs/lab1/decode.cpp Labs/lab2/reader.cpp Labs/lab2/testDict.cpp)
+=======
+        Labs/lab1/test_coding.cc Labs/lab1/hello.cpp Labs/lab1/coding.h Labs/lab1/coding.cpp Labs/lab1/encode.cpp Labs/lab1/decode.cpp Labs/lab2/readWords.cpp)
+>>>>>>> Stashed changes
