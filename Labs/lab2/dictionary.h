@@ -4,6 +4,7 @@
 #include <string>
 #include <vector>
 #include <unordered_set>
+#include "word.h"
 
 class Dictionary {
 public:
@@ -12,6 +13,8 @@ public:
 	std::vector<std::string> get_suggestions(const std::string& word) const;
 private:
     std::unordered_set <std::string> stringSet;
+    std::vector<Word> words[25]; // words[i] = the words with i letters,
+// ignore words longer than 25 letters
 };
 
 #endif

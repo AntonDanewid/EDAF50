@@ -18,8 +18,7 @@ public:
 private:
 	std::string word;
 	std::vector<std::string> trigrams;
-	std::vector<Word> words[25]; // words[i] = the words with i letters,
-// ignore words longer than 25 letters
+
 };
 
 #endif
