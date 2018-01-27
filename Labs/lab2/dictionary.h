@@ -15,6 +15,9 @@ private:
     std::unordered_set <std::string> stringSet;
     std::vector<Word> words[25]; // words[i] = the words with i letters,
 // ignore words longer than 25 letters
+
+	void add_trigram_suggestions(std::vector<std::string> &suggestions, std::string word) const;
+	void rank_suggestions(std::vector<std::string> &suggestions, std::string word) const;
 };
 
 #endif

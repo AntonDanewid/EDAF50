@@ -23,7 +23,7 @@ LDFLAGS =   -g
 
 
 # Targets
-PROGS =  reader testDict spell
+PROGS = spell 
 
 all: $(PROGS)
 
@@ -33,10 +33,9 @@ test: test_coding
 # Targets rely on implicit rules for compiling and linking
 
 reader: reader.o
-testDict: testDict.o dictionary.o word.o
 dictionary: dictionary.o word.o 
 word: word.o
-spell: spell.o dictionary.o 
+spell: spell.o dictionary.o word.o
 
 # Phony targets
 .PHONY: all test clean distclean
