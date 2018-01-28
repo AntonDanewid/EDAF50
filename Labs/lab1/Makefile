@@ -16,15 +16,16 @@ CXXFLAGS += -std=c++11
 CXXFLAGS += -g
 CXXFLAGS += $(DEPFLAGS)
 LDFLAGS =   -g
-LDFLAGS += -L.
-LDLIBS = -l
+LDLIBS += -l
+LDFLAGS += 	-L
+
 #CPPFLAGS += -stdlib=libc++
 #CXXFLAGS += -stdlib=libc++
 #LDFLAGS +=  -stdlib=libc++
 
 
 # Targets
-PROGS =  ltest test_coding print_argv 
+PROGS =  ltest test_coding print_argv encode decode
 
 all: $(PROGS)
 
@@ -38,6 +39,8 @@ print_argv: print_argv.o
 hello: hello.o
 encode: encode.o coding.o
 decode: decode.o coding.o
+#coding: coding.o
+#list: list.o
 
 # Phony targets
 .PHONY: all test clean distclean

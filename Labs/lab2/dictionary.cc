@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "word.h"
 #include "dictionary.h"
-#include <unordered_set>
 #include <sstream>
 
 using namespace std;
@@ -16,7 +15,6 @@ using std::vector;
 Dictionary::Dictionary() {
     string filename = "F:\\Work\\School\\C++\\EDAF50\\Labs\\lab2\\computedWords.txt";
     ifstream input(filename);
-    cout << "hello";
 
 
     if (!input) { // "if the file couldn’t be opened"
@@ -53,7 +51,6 @@ Dictionary::Dictionary() {
             }
         }
         input.close();
-        cout << words[2].at(0).get_word();
 
     }
 
@@ -62,9 +59,11 @@ Dictionary::Dictionary() {
 
 bool Dictionary::contains(const string &word) const {
     int index  = word.size()-1;
+
     if(index >= 25) {
         return false;
     }
+
     vector<Word> search = words[index];
     for(int i = 0; i < search.size(); i++) {
         if(search.at(i).get_word() == word) {
@@ -76,10 +75,12 @@ bool Dictionary::contains(const string &word) const {
 
 vector<string> Dictionary::get_suggestions(const string &word) const {
     vector<string> suggestions;
+
     add_trigram_suggestions(suggestions, word);
 
     rank_suggestions(suggestions, word);
-    //trim_suggestions(suggestions);
+
+    suggestions.resize(5);
     return suggestions;
 }
 
@@ -96,22 +97,21 @@ void Dictionary::add_trigram_suggestions(vector<string> &suggestions, string wor
         trigrams.push_back(trigram);
     }
 
-    vector<Word> wordsU = words[size +1];
-    vector<Word> wordsM = words[size];
-    vector<Word> wordsD = words[size -1];
-    for(Word w: wordsU) {
-        if(w.get_matches(trigrams) >= size/2) {
-            suggestions.push_back(w.get_word());
-        }
+
+    vector<Word> sug = words[size];
+    if(size + 1 < 25) {
+        vector<Word> b = words[size +1];
+        sug.insert(sug.end(), b.begin(), b.end());
     }
 
-    for(Word w: wordsM) {
-        if(w.get_matches(trigrams) >= size/2) {
-            suggestions.push_back(w.get_word());
-        }
+    if(size - 1 >= 0) {
+        vector<Word> a = words[size +1];
+        sug.insert(sug.end(), a.begin(), a.end());
     }
 
-    for(Word w: wordsD) {
+
+
+    for(Word w: sug) {
         if(w.get_matches(trigrams) >= size/2) {
             suggestions.push_back(w.get_word());
         }
@@ -120,11 +120,80 @@ void Dictionary::add_trigram_suggestions(vector<string> &suggestions, string wor
 
 
 }
+
+
+
 
 void Dictionary::rank_suggestions(std::vector<std::string> &suggestions, std::string word) const {
-    int d[26][26];
-    
+
+    vector<pair<string, int>> pairs;
+
+    for(string s: suggestions) {
+
+        int cost = calcLeven(s, word);
+        pair<string,int> p(s, cost);
+        pairs.push_back(p);
+
+
+
+    }
+    //std::sort(pairs.begin(), pairs.end(), [](const std::pair<int,int> &left, const std::pair<int,int> &right) {
+        //return left.second < right.second;
+
+    //});
+    std::sort (std::begin(pairs), std::end(pairs));
+
+
+    for(int i = 0; i < suggestions.size(); i++) {
+        suggestions.at(i) = pairs.at(i).first;
+    }
+
+
 
 }
+
+int Dictionary::calcLeven(std::string suggestion, std::string word) const{
+    int d[26][26];
+    for(int i = 0; i < 26; ++i) {
+        for(int j = 0; j < 26;++j) {
+            d[i][j] = 0;
+        }
+    }
+
+    for(int i = 0; i < 26; ++i) {
+        d[i][0] = i;
+        d[0][i] = i;  //kan breaka
+    }
+
+    int substitutionCost = 0;
+    for(int j = 1; j < suggestion.length();++j) {
+        for(int i = 1; i < word.length();++i) {
+            if(suggestion.at(j) = word.at(i)) {
+                substitutionCost = 0;
+            } else {
+                substitutionCost = 1;
+            }
+            int min = d[i-1][j] +1;
+            if(d[i][j-1] +1 < min ) {
+                min = d[i][j-1] +1;
+            }
+            if(d[i-1][j-1] + substitutionCost < min) {
+                min = d[i-1][j-1] + substitutionCost;
+            }
+
+            d[i][j] = min;
+
+
+        }
+    }
+    return d[word.length()][suggestion.length()];
+
+}
+
+
+
+
+
+
 
 

@@ -18,6 +18,7 @@ private:
 
 	void add_trigram_suggestions(std::vector<std::string> &suggestions, std::string word) const;
 	void rank_suggestions(std::vector<std::string> &suggestions, std::string word) const;
+	int  calcLeven(std::string suggestion, std::string word) const;
 };
 
 #endif

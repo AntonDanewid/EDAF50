@@ -14,6 +14,8 @@
 .idea/**/sqlDataSources.xml
 .idea/**/dynamic.xml
 .idea/**/uiDesigner.xml
+*cmake
+.idea/*
 
 # Gradle:
 .idea/**/gradle.xml
