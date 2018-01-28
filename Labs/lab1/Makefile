@@ -16,8 +16,8 @@ CXXFLAGS += -std=c++11
 CXXFLAGS += -g
 CXXFLAGS += $(DEPFLAGS)
 LDFLAGS =   -g
-LDLIBS += -l
-LDFLAGS += 	-L
+LDLIBS +=	-llab1
+LDFLAGS +=	-L.
 
 #CPPFLAGS += -stdlib=libc++
 #CXXFLAGS += -stdlib=libc++
@@ -33,14 +33,14 @@ test: test_coding
 	./test_coding
 
 # Targets rely on implicit rules for compiling and linking
-ltest: ltest.o lab1
+ltest:	ltest.o
 test_coding: test_coding.o coding.o
 print_argv: print_argv.o
 hello: hello.o
 encode: encode.o coding.o
 decode: decode.o coding.o
-#coding: coding.o
-#list: list.o
+coding: coding.o
+list: list.o
 
 # Phony targets
 .PHONY: all test clean distclean
