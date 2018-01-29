@@ -83,6 +83,30 @@ void List::remove(int d, DeleteFlag df) {
         }
     }
 
+    //If the first is to be removed
+    if(df == DeleteFlag:: LESS && first->value < d) {
+        Node* newFirst = first->next;
+        Node* toDelete = first;
+        first = newFirst;
+        delete toDelete;
+    }
+
+
+    if(df == DeleteFlag:: EQUAL && first->value == d) {
+        Node* newFirst = first->next;
+        Node* toDelete = first;
+        first = newFirst;
+        delete toDelete;
+    }
+
+    if(df == DeleteFlag:: GREATER && first->value > d) {
+        Node* newFirst = first->next;
+        Node* toDelete = first;
+        first = newFirst;
+        delete toDelete;
+    }
+
+
     Node * current = first;
     Node *nextNode = first->next;
 

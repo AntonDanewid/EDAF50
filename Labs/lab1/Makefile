@@ -33,11 +33,11 @@ test: test_coding
 	./test_coding
 
 # Targets rely on implicit rules for compiling and linking
-ltest:	ltest.o
+ltest:	ltest.o 
 test_coding: test_coding.o coding.o
 print_argv: print_argv.o
 hello: hello.o
-encode: encode.o 
+encode: encode.o  
 decode: decode.o 
 coding: coding.o
 list: list.o
