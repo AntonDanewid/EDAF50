@@ -38,12 +38,13 @@ Dictionary::Dictionary() {
                 }
                 string word = result.at(0);
                 vector<string> trigram;
-                for (int i = 2; i < result.size(); ++i) {
+                for (unsigned int i = 2; i < result.size(); ++i) {
                     trigram.push_back(result.at(i));
                 }
 
                 sort(trigram.begin(), trigram.end());
                 Word w(word, trigram);
+                stringSet.insert(word);
                 if (word.size() <= 25) {
                 words[word.size()-1].push_back(w);
             }
@@ -64,11 +65,9 @@ bool Dictionary::contains(const string &word) const {
         return false;
     }
 
-    vector<Word> search = words[index];
-    for(int i = 0; i < search.size(); i++) {
-        if(search.at(i).get_word() == word) {
-            return true;
-        }
+    if(stringSet.find(word) != stringSet.end()) {
+        return true;
+
     }
     return false;
 }
@@ -88,7 +87,7 @@ void Dictionary::add_trigram_suggestions(vector<string> &suggestions, string wor
     int size = word.size();
     vector<string> trigrams;
     string trigram ="";
-    for (int i = 0; i < word.size() - 2; i++) {
+    for (unsigned int i = 0; i < word.size() - 2; i++) {
         string trigram ="";
         char c[] = {word.at(i), word.at(i + 1), word.at(i + 2)};
         trigram += c[0];
@@ -152,13 +151,13 @@ void Dictionary::rank_suggestions(std::vector<std::string> &suggestions, std::st
         return left.second < right.second;
     });
 
-    for(pair<string, int> p: pairs) {
-        cout << p.second << endl;
-    }
+    //for(pair<string, int> p: pairs) {
+     //  cout << p.second << endl;
+    //}
 
 
 
-    for(int i = 0; i < suggestions.size(); i++) {
+    for(unsigned int i = 0; i < suggestions.size(); i++) {
         suggestions.at(i) = pairs.at(i).first;
     }
 
@@ -168,42 +167,45 @@ void Dictionary::rank_suggestions(std::vector<std::string> &suggestions, std::st
 
 int Dictionary::calcLeven(std::string suggestion, std::string word) const{
     int d[26][26];
-    for(int i = 0; i < 26; ++i) {
-        for(int j = 0; j < 26;++j) {
+
+    for(unsigned int i = 0; i < 26; ++i) {
+        for(unsigned int j = 0; j < 26;++j) {
             d[i][j] = 0;
         }
     }
-
-    for(int i = 0; i < 26; ++i) {
+    d[0][0] = 0;
+    for(unsigned int i = 1; i <= suggestion.length(); ++i) {
         d[i][0] = i;
+    }
+
+    for(unsigned int i = 1; i <= word.length(); ++i) {
         d[0][i] = i;  //kan breaka
     }
 
 
 
     int substitutionCost = 0;
-    for(int j = 1; j < suggestion.length();++j) {
-        for(int i = 1; i < word.length();++i) {
-            if(suggestion.at(j) = word.at(i)) {
+    for(unsigned int i = 1; i <= suggestion.length();++i) {
+        for(unsigned int j = 1; j <= word.length();++j) {
+            if(suggestion.at(i-1) == word.at(j-1)) {
                 substitutionCost = 0;
             } else {
                 substitutionCost = 1;
             }
-            int min = d[i-1][j] +1;
-            if(d[i][j-1] +1 < min ) {
-                min = d[i][j-1] +1;
-            }
-            if(d[i-1][j-1] + substitutionCost < min) {
-                min = d[i-1][j-1] + substitutionCost;
-            }
+            d[i][j]= min(min(d[i-1][j] + 1, d[i][j-1] +1), d[i-1][j-1] + substitutionCost);
 
-            d[i][j] = min;
 
 
         }
     }
-    //cout << d[word.length()][suggestion.length()];
-    return d[word.length()][suggestion.length()];
+    /*for(int i = 0; i < 26; i++) {
+        for(int j = 0; j < 26; j++) {
+            cout << d[i][j] << " ";
+        }
+        cout << endl;
+    }*/
+    //cout << d[suggestion.length()][word.length()];
+    return d[suggestion.length()][word.length()];
 
 }
 

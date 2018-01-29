@@ -41,6 +41,7 @@ encode: encode.o
 decode: decode.o 
 coding: coding.o
 list: list.o
+liblab1.a: list.o coding.o
 
 # Phony targets
 .PHONY: all test clean distclean
