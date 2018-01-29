@@ -13,7 +13,7 @@ using std::string;
 using std::vector;
 
 Dictionary::Dictionary() {
-    string filename = "F:\\Work\\School\\C++\\EDAF50\\Labs\\lab2\\computedWords.txt";
+    string filename = "computedWords.txt";
     ifstream input(filename);
 
 
@@ -98,24 +98,28 @@ void Dictionary::add_trigram_suggestions(vector<string> &suggestions, string wor
     }
 
 
-    vector<Word> sug = words[size];
-    if(size + 1 < 25) {
-        vector<Word> b = words[size +1];
+    vector<Word> sug = words[size-1];
+    if(size < 25) {
+        vector<Word> b = words[size];
         sug.insert(sug.end(), b.begin(), b.end());
     }
 
-    if(size - 1 >= 0) {
-        vector<Word> a = words[size +1];
+    if(size - 2 >= 0) {
+        vector<Word> a = words[size -2];
         sug.insert(sug.end(), a.begin(), a.end());
     }
 
 
 
     for(Word w: sug) {
-        if(w.get_matches(trigrams) >= size/2) {
+        if(w.get_matches(trigrams) >= trigrams.size()/2) {
             suggestions.push_back(w.get_word());
+            //cout << w.get_word();
+            //cout << "\n";
         }
     }
+
+
 
 
 
@@ -141,7 +145,17 @@ void Dictionary::rank_suggestions(std::vector<std::string> &suggestions, std::st
         //return left.second < right.second;
 
     //});
-    std::sort (std::begin(pairs), std::end(pairs));
+
+
+    //std::sort (std::begin(pairs), std::end(pairs));
+    std::sort(pairs.begin(), pairs.end(), [](const std::pair<string,int> &left, const std::pair<string,int> &right) {
+        return left.second < right.second;
+    });
+
+    for(pair<string, int> p: pairs) {
+        cout << p.second << endl;
+    }
+
 
 
     for(int i = 0; i < suggestions.size(); i++) {
@@ -165,6 +179,8 @@ int Dictionary::calcLeven(std::string suggestion, std::string word) const{
         d[0][i] = i;  //kan breaka
     }
 
+
+
     int substitutionCost = 0;
     for(int j = 1; j < suggestion.length();++j) {
         for(int i = 1; i < word.length();++i) {
@@ -186,6 +202,7 @@ int Dictionary::calcLeven(std::string suggestion, std::string word) const{
 
         }
     }
+    //cout << d[word.length()][suggestion.length()];
     return d[word.length()][suggestion.length()];
 
 }
