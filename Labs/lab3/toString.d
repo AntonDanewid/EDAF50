@@ -1,3 +1,1 @@
-toString.o: toString.cc toString.h
-
-toString.h:
+toString.o: toString.cc

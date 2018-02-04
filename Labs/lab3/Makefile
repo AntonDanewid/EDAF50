@@ -23,7 +23,7 @@ LDFLAGS =   -g
 
 
 # Targets
-PROGS = html_strip primes date_test toString_test
+PROGS = html_strip primes date_test toString_test stringtest
 
 all: $(PROGS) 
 
@@ -32,11 +32,13 @@ test: test_coding
 
 # Targets rely on implicit rules for compiling and linking
 date_test: date_test.o date.o
+string_cast: string_cast.o
 html_strip: html_strip.o
 primes: primes.o
 date: date.o
 toString: toString.o
 toString_test: toString.o toString_test.o date.o
+stringtest: stringtest.o date.o string_cast.o
 
 # Phony targets
 .PHONY: all test clean distclean

@@ -63,7 +63,8 @@ std::istream& operator>> (std::istream& is, Date& dt)
 	char ch1, ch2;
 	if (is >> year >> ch1 >> month >> ch2 >> day)
 	{
-		if (ch1 == '-' && ch2 == '-') {
+		if (ch1 == '-' && ch2 == '-' && day > 0 && day < 32 && year > 0 && year < 9999 && month > 0 && month < 13) {
+
 			dt.setDay(day);
 			dt.setMonth(month);
 			dt.setYear(year);

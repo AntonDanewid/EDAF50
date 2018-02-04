@@ -4,10 +4,8 @@
 
 #include "date.h"
 #include <iostream>
+#include "toString.h"
 
-
-template <typename T>
-std::string toString(T const &value);
 
 
 using namespace std;
@@ -23,14 +21,5 @@ int main() {
     string nbr = toString(a);
     cout << nbr << endl;
 
-
-}
-template <typename T>
-std::string toString(T const &value) {
-
-    std::ostringstream oss;
-    oss << value;
-    std::string s = oss.str();
-    return s;
 
 }

@@ -20,21 +20,28 @@ int main() {
 
 
     ifstream input("test.html");
+
     istream_iterator<char> begin(input), end;
     vector<char> html(begin, end);
-    regex tags("<[^<]*>", "<*> &*;");
-    string result;
-    regex_replace(back_inserter(result), html.begin(), html.end(), tags, " ");
 
+    regex tags("<[^<]*>");
+    string output;
 
-
-
-
-
+    regex_replace(back_inserter(output), html.begin(), html.end(), tags, "");
     ofstream myfile;
+
+
+
+    cout << output;
+
+
     myfile.open ("strippedHtml.txt");
-    myfile << result;
+    myfile << output;
     myfile.close();
+
+
+
+
 
 
 }

@@ -18,9 +18,10 @@ int main() {
     }
     marked.at(0) = 'C';
     marked.at(1) = 'C';
-    for(int i = 2; i < 200; i++) {
+    int length = 200;
+    for(int i = 2; i < length; i++) {
         if(isPrime(i)) {
-            for(int j = 2; j < 20; j++) {
+            for(int j = 2; j < length/i ; j++) {
                 if(j*i < marked.size()) {
                     marked.at(j*i) = 'C';
                 } else {

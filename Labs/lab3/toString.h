@@ -9,6 +9,12 @@
 #include <sstream>
 
 template <typename T>
-std::string toString(T const & value);
+std::string toString(T const &value) {
+    std::ostringstream oss;
+    oss << value;
+    std::string s = oss.str();
+    return s;
+
+}
 
 #endif //LAB3_TOSTRING_H
