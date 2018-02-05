@@ -1,1 +1,5 @@
-ThisisalinewithoutatagThisis<tagtag>alinewithonetagAndthis<tag>linehastwotags<...>Alinewithastartingtag<.....continues...we'restillinatag......finishes>whichfinishedonthisline<lasttag>Specialchars:
+This is a line without a tag
+This is  a line with one tag
+And this  line has two tags 
+A line with a starting tag  which finished on this line 
+Special chars: <> &

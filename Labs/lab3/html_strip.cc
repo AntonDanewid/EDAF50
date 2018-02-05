@@ -20,18 +20,40 @@ int main() {
 
 
     ifstream input("test.html");
-
+    input >> std::noskipws;
     istream_iterator<char> begin(input), end;
-    vector<char> html(begin, end);
-    for(char c: html) {
-        cout << c;
-    }
+    std::string html(begin, end);
 
-    regex tags("<[^<]*>?&[^<]*;");
+
+    regex tags("<[^<]*>");
     string output;
 
     regex_replace(back_inserter(output), html.begin(), html.end(), tags, "");
     ofstream myfile;
+
+
+    std::size_t f = output.find("&gt;");
+    output.replace(f, std::string("&gt;").length(), ">");
+
+
+
+    f = output.find("&lt;");
+    output.replace(f, std::string("&lt;").length(), "<");
+
+    f = output.find("&nbsp;");
+    output.replace(f, std::string("&nbsp;").length(), " ");
+
+    f = output.find("&amp;");
+    output.replace(f, std::string("&amp;").length(), "&");
+
+/*
+
+    output.replace(f, std::string("&gt").length(), ">");
+    output.replace(f, std::string("&lt").length(), "<");
+    output.replace(f, std::string("&gt").length(), ">");
+    output.replace(f, std::string("&amp").length(), "&");
+
+*/
 
 
 
