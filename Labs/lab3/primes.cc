@@ -13,27 +13,24 @@ int main() {
 
     char c = 'P';
     string marked;
-    for(unsigned int i = 0; i < 201; ++i ) {
+    for(unsigned int i = 0; i < 100000; ++i ) {
         marked += c;
     }
     marked.at(0) = 'C';
     marked.at(1) = 'C';
-    int length = 200;
+    cout << "running";
+
+    int length = marked.size();
     for(int i = 2; i < length; i++) {
-        if(isPrime(i)) {
-            for(int j = 2; j < length/i ; j++) {
-                if(j*i < marked.size()) {
+            for(int j = 2; j*i < length ; j++) {
                     marked.at(j*i) = 'C';
-                } else {
-                    break;
-                }
+
             }
         }
-        }
 
-    cout << marked;
-
-    int last = 0;
+    cout << "running";
+    cout << marked.rfind("P");
+    /*int last = 0;
     for(int i = 2; i < 100000; i++) {
         if(isPrime(i)) {
             if(i > last) {
@@ -41,8 +38,8 @@ int main() {
             }
         }
     }
+     */
     cout << endl;
-    cout << "largest prime is " << last;
 
 
 
