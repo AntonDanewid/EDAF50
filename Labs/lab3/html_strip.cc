@@ -23,8 +23,11 @@ int main() {
 
     istream_iterator<char> begin(input), end;
     vector<char> html(begin, end);
+    for(char c: html) {
+        cout << c;
+    }
 
-    regex tags("<[^<]*>");
+    regex tags("<[^<]*>?&[^<]*;");
     string output;
 
     regex_replace(back_inserter(output), html.begin(), html.end(), tags, "");

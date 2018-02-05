@@ -1,1 +1,1 @@
-ThisisalinewithoutatagThisis<tagtag>alinewithonetagAndthis<tag>linehastwotags<...>Alinewithastartingtag<.....continues...we'restillinatag......finishes>whichfinishedonthisline<lasttag>Specialchars:&lt;&gt;&nbsp;&amp;
+ThisisalinewithoutatagThisis<tagtag>alinewithonetagAndthis<tag>linehastwotags<...>Alinewithastartingtag<.....continues...we'restillinatag......finishes>whichfinishedonthisline<lasttag>Specialchars:
