@@ -1,32 +1,27 @@
 //
-// Created by Anton on 2/4/2018.
+// Created by Anton on 2/10/2018.
 //
 
-#ifndef LAB4_VNS_H
-#define LAB4_VNS_H
+#ifndef LAB4_MNS_H
+#define LAB4_MNS_H
 
 #include <vector>
+#include <map>
 #include "nameserverinterface.h"
 
 using namespace std;
 
 
-class VNS: public NameServerInterface {
+class MNS: public NameServerInterface {
 public:
-    VNS();
+    MNS();
     virtual void insert(const HostName& name, const IPAddress& address) override ;
     virtual bool remove(const HostName& name) override ;
     virtual IPAddress lookup(const HostName& name) const override ;
 
 
 private:
-    vector<pair<HostName , IPAddress >> hosts;
+        std::map<HostName , IPAddress > hosts;
 
 };
-
-
-
-
-
-
-#endif //LAB4_VNS_H
+#endif //LAB4_MNS_H

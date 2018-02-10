@@ -23,15 +23,13 @@ LDFLAGS =   -g
 
 
 # Targets
-PROGS = nstest nstime
+PROGS = simplebitsettest bitsettest1 bitsettest2
 
 all: $(PROGS) 
 
-nstest: VNS.o MNS.o HNS.o UMNS.o
-
-nstime: VNS.o MNS.o HNS.o UMNS.o
-
-
+bitsettest2: bitset.o bitreference.o 
+simplebitsettest: simplebitsettest.o simplebitset.o
+bitsettest1: bitset.o bitreference.o bitsettest1.o
 # Phony targets
 .PHONY: all test clean distclean
 

@@ -13,7 +13,7 @@
 using namespace std;
 
 void test(NameServerInterface& ns) {
-#if 0
+
 	ns.insert("www.Bosse.se", 1);
 	ns.insert("www.Ek.se", 2);
 	assert(ns.lookup("www.Bosse.se") == 1);
@@ -22,9 +22,8 @@ void test(NameServerInterface& ns) {
 	assert(! ns.remove("www.Nisse.se"));
 	assert(ns.remove("www.Bosse.se"));
 	assert(ns.lookup("www.Bosse.se") == NON_EXISTING_ADDRESS);
-#else
-    throw std::runtime_error{"test failed"};
-#endif
+
+
 }
 
 int main() {
@@ -34,26 +33,25 @@ int main() {
 	VNS vns;
 	test(vns);
 	cout << "Vector passed ..." << endl;
-	
-	/*
-	 * Test the map name server.
-	 */
+
+	 // Test the map name server.
+
 	MNS mns;
 	test(mns);
 	cout << "Map passed ..." << endl;
-	
-	/*
-	 * Test the unordered map name server.
-	 */
+
+
+	 // Test the unordered map name server.
+
 	UMNS umns;
 	test(umns);
 	cout << "Unordered map passed ..." << endl;
-	
-	/*
-	 * Test the hash name server.
-	 * The parameter to the constructor is the size of the
-	 * hash table.
-	 */
+
+
+	 //Test the hash name server.
+	 //The parameter to the constructor is the size of the
+	 //hash table.
+
 	HNS hns(4711);
 	test(hns);
 	cout << "Hash passed ..." << endl;
