@@ -14,6 +14,9 @@ public:
 	void setDay(int d);
 	void setMonth(int m);
 	void setYear(int y);
+	int daysInMonth(int m);
+
+
 private:
 	int year;  // the year (four digits)
 	int month; // the month (1-12)

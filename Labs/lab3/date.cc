@@ -51,6 +51,10 @@ void Date::next() {
 		}
 	}
 }
+
+int Date::daysInMonth(int m) {
+    return daysPerMonth[m -1];
+}
 std::ostream& operator<<(std::ostream& os, const Date& dt)
 {
 	os << dt.getYear() << '-' << dt.getMonth() << '-' << dt.getDay();
@@ -63,7 +67,7 @@ std::istream& operator>> (std::istream& is, Date& dt)
 	char ch1, ch2;
 	if (is >> year >> ch1 >> month >> ch2 >> day)
 	{
-		if (ch1 == '-' && ch2 == '-' && day > 0 && day < 32 && year > 0 && year < 9999 && month > 0 && month < 13) {
+		if (ch1 == '-' && ch2 == '-' && month >0 && month < 13 && day >  0 && day < dt.daysInMonth(month) && year > 0 && year < 9999 && month > 0 && month < 13) {
 
 			dt.setDay(day);
 			dt.setMonth(month);
