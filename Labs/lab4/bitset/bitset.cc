@@ -2,7 +2,9 @@
 #include "bitreference.h"
 #include "bitsetiterator.h"
 
+
 Bitset::Bitset() : bits(0) {}
+
 
 size_t Bitset::size() const {
 	return BPW;
