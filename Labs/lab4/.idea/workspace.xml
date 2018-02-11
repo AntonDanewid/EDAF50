@@ -40,10 +40,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HNS.cc" pinned="false" current-in-tab="false">
+      <file leaf-file-name="HNS.cc" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/nameserver/HNS.cc">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12">
+            <state relative-caret-position="-422">
               <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
               <folding />
             </state>
@@ -60,7 +60,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MNS.cc" pinned="false" current-in-tab="true">
+      <file leaf-file-name="MNS.cc" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/nameserver/MNS.cc">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
@@ -232,12 +232,12 @@
       <option name="presentableId" value="Default" />
       <updated>1517761266031</updated>
       <workItem from="1517761267473" duration="4015000" />
-      <workItem from="1518257229757" duration="15046000" />
+      <workItem from="1518257229757" duration="15691000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19061000" />
+    <option name="totallyTimeSpent" value="19706000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -429,14 +429,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/nameserver/HNS.cc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/nameserver/VNS.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -473,6 +465,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="18" column="52" lean-forward="false" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/nameserver/HNS.cc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-422">
+          <caret line="41" column="13" lean-forward="false" selection-start-line="41" selection-start-column="13" selection-end-line="41" selection-end-column="13" />
           <folding />
         </state>
       </provider>
